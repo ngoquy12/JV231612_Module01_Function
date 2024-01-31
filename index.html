@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Function</h1>
+    <script src="./index.js"></script>
+    <script>
+      // Hàm kiểm tra xem có thể tạo ra chuỗi đã nhập từ chuỗi đã khai báo hay không
+      function canBuildString(declaredStr, inputStr) {
+        // Chuyển đổi chuỗi đã được khai báo thành một mảng các ký tự
+        let declaredChars = Array.from(declaredStr);
+
+        // Kiểm tra từng ký tự trong chuỗi đã nhập
+        for (let char of inputStr) {
+          // Tìm vị trí của ký tự trong mảng
+          let charIndex = declaredChars.indexOf(char);
+
+          // Nếu ký tự có trong mảng, loại bỏ nó khỏi mảng
+          if (charIndex !== -1) {
+            declaredChars.splice(charIndex, 1);
+          } else {
+            // Nếu ký tự không có trong mảng, không thể tạo ra chuỗi đã nhập
+            return false;
+          }
+        }
+
+        // Nếu đi qua tất cả các ký tự mà không gặp vấn đề, có thể tạo ra chuỗi đã nhập
+        return true;
+      }
+
+      // Nhập chuỗi đã được khai báo
+      let declaredString = prompt("Nhập vào chuỗi đã được khai báo: ");
+
+      // Nhập chuỗi cần kiểm tra
+      let inputString = prompt("Nhập vào chuỗi cần kiểm tra: ");
+
+      // Kiểm tra và hiển thị kết quả
+      let result = canBuildString(declaredString, inputString);
+      console.log(result);
+    </script>
+  </body>
+</html>
